@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Tucomparas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <ion-text *ngIf="showMsgLoadingCategories" color="dark" class="ion-margin">Cargando...</ion-text>
+  <ion-list>
+    <ion-item *ngFor="let category of categorias">
+      <ion-label (click)="goSubCategory(category.nombreCategoria)">{{category.nombreCategoria}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

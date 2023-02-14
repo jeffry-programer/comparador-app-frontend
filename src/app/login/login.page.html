@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Tucomparas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Iniciar sesion</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="formularioRegistro">
+        <ion-item>
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input formControlName="correo" [(ngModel)]="correo" type="email" placeholder="Por favor ingrese un correo"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input formControlName="clave" [(ngModel)]="clave" type="password" placeholder="Por favor ingrese una contraseña"></ion-input>
+        </ion-item>
+      </form>
+      <br>
+      <ion-text *ngIf="errorLogin" color="danger" class="ion-margin">{{messageLogin}}</ion-text>
+      <ion-text *ngIf="showMsgLoading" color="dark" class="ion-margin">{{msgLoading}}</ion-text>
+      <ion-item lines="none">
+        <ion-button (click)="login()">
+          Entrar
+        </ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/register']">Registrate</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

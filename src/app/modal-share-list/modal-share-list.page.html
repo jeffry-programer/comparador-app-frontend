@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="light">
+    <ion-title>Compartit lista</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="closeModal()" name="close"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-label position="stacked">Correo del usuario a compartir</ion-label>
+    <ion-input placeholder="Por favor ingrese un correo" [(ngModel)]="email"></ion-input>
+  </ion-item>
+  <ion-button color="warning" (click)="shareList()" expand="block" shape="round" class="ion-margin-top">
+    Compartir
+  </ion-button>
+  <ion-item *ngIf="showMsgLoading" lines="none">
+    <ion-text color="dark"><h6>Solicitud en proceso...</h6></ion-text>
+  </ion-item>
+  <ion-item *ngIf="showMsg" lines="none">
+    <ion-text color="success"><h6>Lista compartida exitosamente</h6></ion-text>
+  </ion-item>
+</ion-content>

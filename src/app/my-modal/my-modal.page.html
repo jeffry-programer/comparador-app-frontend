@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-title>Editar producto lista</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="closeModal()" name="close"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="ion-margin-top">
+    <ion-item>
+      <ion-text><h2>{{nameProd}}</h2></ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Cantidad producto</ion-label>
+      <ion-input [(ngModel)]="quantityProd" type="text" placeholder="Por favor ingrese una cantidad"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Precio producto</ion-label>
+      <ion-input [(ngModel)]="priceProd" type="number" placeholder="Por favor ingrese un precio"></ion-input>
+    </ion-item>
+    <ion-button color="warning" expand="block" class="ion-margin" (click)="editProd()">Editar</ion-button>
+  </ion-list>
+  <ion-item *ngIf="showMsgLoading" lines="none">
+    <ion-text color="dark"><h6>Solicitud en proceso...</h6></ion-text>
+  </ion-item>
+  <ion-item *ngIf="showMsgSuccess" lines="none">
+    <ion-text color="success"><h6>Editado exitosamente</h6></ion-text>
+  </ion-item>
+</ion-content>

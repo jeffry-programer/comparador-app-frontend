@@ -1,0 +1,90 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Tucomparas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none" class="ion-margin">
+    <img src="https://tucomparas.com.co/vistas/img/LogoTucomparas.svg" alt="img" class="img-logo-tucomparas">
+  </ion-list>
+  <ion-list>
+    <ion-item lines="none">
+      <ion-searchbar [(ngModel)]="nombreProducto" animated="true"
+        placeholder="Busca y compara productos"></ion-searchbar><ion-button color="warning"
+        (click)="buscarProducto()"><ion-icon name="search"></ion-icon></ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-item lines="none">
+    <ion-slides [options]="slideOptsOne">
+      <ion-slide *ngFor="let image of images" class="ion-text-center">
+        <img src="{{image.img}}" alt="imagen" class="{{image.clase}}">
+        <h2>{{image.titulo}}</h2>
+      </ion-slide>
+    </ion-slides>
+  </ion-item>
+  <ion-item>
+    <ion-text color="dark">
+      <h4>Productos mas buscados</h4>
+    </ion-text>
+  </ion-item>
+  <br>
+  <ion-text *ngIf="showMsgLoadingProds" class="ion-margin">Cargando productos...</ion-text>
+  <ion-item lines="none">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let producto of productos">
+          <ion-card (click)="goDetailProd(producto.Nombre)" class="ion-text-center">
+            <ion-card-header>
+              <img src="https://localhost/Tiendas/vistas/img/productos/{{producto.FotoPrincipal}}">
+            </ion-card-header>
+            <ion-card-content>
+              <ion-text color="dark">
+                <h6 class="cut-text">{{producto.Nombre}}</h6>
+              </ion-text>
+              <ion-chip class="ion-no-margin ion-margin-top">
+                <ion-avatar>
+                  <img alt="img" src="https://localhost/Tiendas/vistas/img/tiendas/{{producto.logoRuta}}" />
+                </ion-avatar>
+                <ion-label>$ {{producto.precioReal}}</ion-label>
+              </ion-chip>
+              <p color="success"></p>
+              <p>Ver mas...</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+  <ion-item>
+    <ion-text color="dark">
+      <h4>Categorias</h4>
+    </ion-text>
+  </ion-item>
+  <br>
+  <ion-text *ngIf="showMsgLoadingCategories" class="ion-margin">Cargando categorias...</ion-text>
+  <ion-item lines="none">
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let categoria of categorias">
+          <ion-card class="rounded-30" (click)="goCategories(categoria.nombreCategoria)">
+            <ion-card-header class="ion-text-center">
+              <ion-card-title>{{categoria.nombreCategoria}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="ion-text-center">
+              Ver mas...
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+</ion-content>
+<ion-footer color="dark">
+  <ion-toolbar color="dark">
+    <ion-title>tucomparas</ion-title>
+  </ion-toolbar>
+</ion-footer>

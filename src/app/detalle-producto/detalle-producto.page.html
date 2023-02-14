@@ -1,0 +1,82 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Tucomparas</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div id="container">
+    <ion-item class="ion-margin" routerDirection="root" lines="none" detail="false" routerLinkActive="selected">
+      <ion-icon slot="start" name="arrow-back" (click)="goBack()">
+      </ion-icon>
+    </ion-item>
+    <br>
+    <ion-text *ngIf="showMsgLoadingDetailProd" class="ion-margin">Cargando...</ion-text>
+    <ion-item class="ion-margin" routerDirection="root" lines="none" detail="false" routerLinkActive="selected">
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="6">
+            <h1>{{arrayProd.Nombre}}</h1>
+          </ion-col>
+          <ion-col size="6">
+            <img src="https://localhost/Tiendas/vistas/img/productos/{{arrayProd.FotoPrincipal}}" alt="image">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="ion-margin" *ngIf="showDescription">
+      <ion-label>Descripción</ion-label>
+    </ion-item>
+    <ion-item class="ion-margin" routerDirection="root" lines="none" detail="false" routerLinkActive="selected">
+      <p>{{arrayProd.Descripcion}}</p>
+    </ion-item>
+    <ion-item class="ion-margin" routerDirection="root" lines="none" detail="false" routerLinkActive="selected" *ngIf="showDescription">
+      <ion-avatar>
+        <img src="https://localhost/Tiendas/vistas/img/tiendas/{{arrayProd.logoRuta}}" alt="img"/>
+      </ion-avatar>
+      <ion-text color="dark" class="ion-margin-start">
+        <h5>$ {{arrayProd.precioReal}}</h5>
+      </ion-text>
+    </ion-item>
+    <ion-item class="ion-margin" *ngIf="showDescription">
+      <ion-label>Otros precios</ion-label>
+    </ion-item>
+    <ion-item class="ion-margin" routerDirection="root" lines="none" detail="false" routerLinkActive="selected" *ngFor="let price of otherPrice">
+      <ion-avatar>
+        <img src="https://localhost/Tiendas/vistas/img/tiendas/{{price.logoRuta}}" alt="img"/>
+      </ion-avatar>
+      <ion-text color="dark" class="ion-margin-start">
+        <h5>$ {{price.precioReal}}</h5>
+      </ion-text>
+    </ion-item>
+    <ion-item class="ion-margin" *ngIf="showDescription">
+      <ion-label>Productos sugeridos</ion-label>
+    </ion-item>
+    <ion-item lines="none" *ngIf="showDescription">
+      <ion-row>
+        <ion-col size="6" *ngFor="let producto of prods">
+          <ion-card (click)="goDetailProd(producto.Nombre)" class="ion-text-center">
+            <ion-card-header>
+              <img src="https://localhost/Tiendas/vistas/img/productos/{{producto.FotoPrincipal}}">
+            </ion-card-header>
+            <ion-card-content>
+              <ion-text color="dark">
+                <h6 class="cut-text">{{producto.Nombre}}</h6>
+              </ion-text>
+              <ion-chip class="ion-no-margin ion-margin-top">
+                <ion-avatar>
+                  <img alt="img" src="https://localhost/Tiendas/vistas/img/tiendas/{{producto.logoRuta}}" />
+                </ion-avatar>
+                <ion-label>$ {{producto.precioReal}}</ion-label>
+              </ion-chip>
+              <p color="success"></p>
+              <p>Ver mas...</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </div>
+</ion-content>

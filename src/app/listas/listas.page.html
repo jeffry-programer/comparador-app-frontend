@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Tucomparas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <h1 class="ion-margin">Listas</h1>
+  </ion-item>
+  <ion-button (click)="createList()" expand="block" shape="round" class="ion-margin-top" color="warning">
+    Crear lista
+  </ion-button>
+  <ion-item lines="none" class="ion-margin" *ngIf="showMsg">
+    <ion-text color="{{colorMsg}}">
+      <h6>{{msg}}</h6>
+    </ion-text> 
+  </ion-item>
+  <ion-item lines="none">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="6" *ngFor="let list of list">
+          <ion-card (click)="goDetaiList(list.idListaCompra)">
+            <ion-card-header>
+              <img src="https://localhost/Comparador/vistas/img/img-lista-creada.svg" alt="img">
+            </ion-card-header>
+            <ion-card-content>
+              <ion-text color="dark">
+                <h2 class="cut-text">{{list.nombreLista}}</h2>
+              </ion-text>
+              <p>Ver mas...</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+</ion-content>

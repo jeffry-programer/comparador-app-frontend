@@ -1,0 +1,96 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Tucomparas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div id="container">
+    <ion-item class="ion-margin" routerDirection="root" lines="none" detail="false" routerLinkActive="selected">
+      <ion-icon slot="start" name="arrow-back" (click)="goBack()">
+      </ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="10">
+            <ion-text>
+              <h2>{{titleList}}</h2>
+            </ion-text>
+          </ion-col>
+          <ion-col size="2">
+            <ion-icon name="menu" class="ion-margin-top" (click)="presentPopover($event)"></ion-icon>
+            <ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
+              <ng-template>
+                <ion-content class="ion-padding">
+                  <ion-item *ngFor="let option of listOptios" lines="none">
+                    <ion-label (click)="optionList(option)">{{option}}</ion-label>
+                  </ion-item>
+                </ion-content>
+              </ng-template>
+            </ion-popover>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="ion-margin">
+      <ion-grid fixed>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="10">
+            <ion-input placeholder="Ingrese un producto" [(ngModel)]="nameProd"></ion-input>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button color="warning" (click)="addProdList()" class="ion-margin-top"><ion-icon
+                name="add-circle"></ion-icon></ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-text *ngIf="loadingMsg">Solicitud en proceso...</ion-text>
+        <ion-text *ngIf="showMsg" color="{{colorMsg}}">{{msg}}</ion-text>
+      </ion-grid>
+    </ion-item>
+    <ion-item lines="none" *ngIf="showMsgLoading">
+      <ion-text color="dark">
+        <h6>Cargando...</h6>
+      </ion-text>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-grid fixed>
+        <ion-row *ngFor="let prod of prods;let i = index" class="ion-margin ion-align-items-center">
+          <ion-col size="2">
+            <ion-icon name="square-outline" (click)="changeStatus(1, prod.idproductosLista)"></ion-icon>
+          </ion-col>
+          <ion-col size="8">
+            <ion-text>{{prod.nombreProducto}}</ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-icon name="brush"
+              (click)="openModal(prod.idproductosLista, prod.cantidad, prod.PrecioProductoLista, prod.nombreProducto)"
+              color="primary"></ion-icon>
+          </ion-col>
+          <ion-col size="1">
+            <ion-icon name="trash" (click)="deleteProd(prod.idproductosLista)" color="danger"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item *ngIf="showItem">
+      <ion-label>Productos Comprados</ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-grid fixed>
+        <ion-row *ngFor="let prod of prodsBuy;let i = index" class="ion-margin ion-align-items-center">
+          <ion-col size="2">
+            <ion-icon name="checkbox" (click)="changeStatus(0, prod.idproductosLista)"></ion-icon>
+          </ion-col>
+          <ion-col size="8">
+            <ion-text>{{prod.nombreProducto}}</ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </div>
+</ion-content>

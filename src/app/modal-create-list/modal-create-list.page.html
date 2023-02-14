@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="light">
+    <ion-title>Crear lista</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="closeModal()" name="close"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-label position="stacked">Nombre de la lista</ion-label>
+    <ion-input placeholder="Por favor ingrese un nombre" [(ngModel)]="nameList"></ion-input>
+  </ion-item>
+  <ion-button color="warning" (click)="createList()" expand="block" shape="round" class="ion-margin-top">
+    Crear
+  </ion-button>
+  <ion-item *ngIf="showMsgLoading" lines="none">
+    <ion-text color="dark"><h6>Solicitud en proceso...</h6></ion-text>
+  </ion-item>
+  <ion-item *ngIf="showMsg" lines="none">
+    <ion-text color="success"><h6>Lista creada exitosamente</h6></ion-text>
+  </ion-item>
+</ion-content>
